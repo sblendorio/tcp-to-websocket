@@ -15,7 +15,7 @@ can be called from the command line interface with `tcpws`.
 # Usage
 
 ```
-tcpws -p port -w wsaddress [-n name] [-usestrings]
+tcpws -p port -w wsaddress [-n name] [--usestrings]
 ```
 - `port` is the local TCP port number
 - `wsaddress` is the address of the remove WebSocket connection
