@@ -1,0 +1,14 @@
+{
+  "name": "tcp-to-websocket",
+  "version": "0.0.1",
+  "main": "tcpws.js",
+  "scripts": {
+  },
+  "author": "Antonino Porcino <nino.porcino@gmail.com>",
+  "license": "MIT",
+  "description": "Forwards TCP to WebSocket",
+  "dependencies": {
+    "command-line-args": "^5.2.1",
+    "websocket": "^1.0.34"
+  }
+}
