@@ -16,7 +16,7 @@ server.on('connection', function(sock) {
    onClientConnection(sock, wsaddress);
 });
 
-server.listen(port, 'localhost', function() {
+server.listen({port}, function() {
    console.log(`tcpws: started listening on port ${port}`);
 });
 
