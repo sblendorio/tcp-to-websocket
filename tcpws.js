@@ -8,6 +8,7 @@ const options = getOptions();
 const port = options.port;
 const wsaddress = options.wsaddress;
 const usestrings = options.usestrings;
+const name = options.name;
 
 const server = net.createServer();
 
@@ -22,7 +23,7 @@ server.listen({port}, function() {
 
 function onClientConnection(sock, wsaddress) {
 
-   let ws = new W3CWebSocket(wsaddress);
+   let ws = new W3CWebSocket(wsaddress, name);
    let client = `[${sock.remoteAddress}:${sock.remotePort}]`;
 
    ws.onerror = function(error) {
