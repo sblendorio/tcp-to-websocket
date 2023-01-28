@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const net = require('net');
 const W3CWebSocket = require('websocket').w3cwebsocket;
 const getOptions = require("./options");
