@@ -44,8 +44,13 @@ function onClientConnection(sock, wsaddress) {
       console.log(`${client} connected to websocket`);
 
       sock.on('data', function(data) {
-         if(!usestrings) ws.send(data);
-         else ws.send(data.toString());  // convert Buffer to String
+         if(ws.readyState === ws.OPEN) {
+            if(!usestrings) ws.send(data);
+            else ws.send(data.toString());  // convert Buffer to String
+         }
+         else {
+            console.log(`${client} can't send data: websocket closed`);
+         }
       });
 
       sock.on('close', function() {
