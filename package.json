@@ -1,7 +1,10 @@
 {
   "name": "tcp-to-websocket",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "main": "tcpws.js",
+  "bin": {
+     "tcpws": "./tcpws.js"   
+  },
   "scripts": {
   },
   "author": "Antonino Porcino <nino.porcino@gmail.com>",

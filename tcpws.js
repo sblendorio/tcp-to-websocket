@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const net = require('net');
 const W3CWebSocket = require('websocket').w3cwebsocket;
 const getOptions = require("./options");
@@ -6,6 +8,7 @@ const options = getOptions();
 const port = options.port;
 const wsaddress = options.wsaddress;
 const usestrings = options.usestrings;
+const name = options.name;
 
 const server = net.createServer();
 
@@ -14,13 +17,13 @@ server.on('connection', function(sock) {
    onClientConnection(sock, wsaddress);
 });
 
-server.listen(port, 'localhost', function() {
+server.listen({port}, function() {
    console.log(`tcpws: started listening on port ${port}`);
 });
 
 function onClientConnection(sock, wsaddress) {
 
-   let ws = new W3CWebSocket(wsaddress);
+   let ws = new W3CWebSocket(wsaddress, name);
    let client = `[${sock.remoteAddress}:${sock.remotePort}]`;
 
    ws.onerror = function(error) {
@@ -41,8 +44,13 @@ function onClientConnection(sock, wsaddress) {
       console.log(`${client} connected to websocket`);
 
       sock.on('data', function(data) {
-         if(!usestrings) ws.send(data);
-         else ws.send(data.toString());  // convert Buffer to String
+         if(ws.readyState === ws.OPEN) {
+            if(!usestrings) ws.send(data);
+            else ws.send(data.toString());  // convert Buffer to String
+         }
+         else {
+            console.log(`${client} can't send data: websocket closed`);
+         }
       });
 
       sock.on('close', function() {
